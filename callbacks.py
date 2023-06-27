@@ -21,7 +21,7 @@ class SpectrogramCallback(tf.keras.callbacks.Callback):
         should_reset = True
         for x, y in self.soundequence:
             spec_x = self.model.stft(x)
-            self.model.stft.get_layer('normalizer').adapt(spec_x, reset_state=should_reset)
+            self.model.stft.get_layer('normalizer').adapt(spec_x) # , reset_state=should_reset
             should_reset = False
 
         print('Mean: {} | Var: {}'.format(self.model.stft.get_layer('normalizer').mean,
